@@ -1,0 +1,13 @@
+{
+  "name": "@tyravex/eggs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Tyravex Egg registry and validation",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

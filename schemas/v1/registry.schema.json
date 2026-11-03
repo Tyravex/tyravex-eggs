@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tyravex Egg Registry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "eggs"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "eggs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "description",
+          "category",
+          "version",
+          "path"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(\\.[a-z][a-z0-9]*)+$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "category": {
+            "enum": [
+              "bots",
+              "games",
+              "applications"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^eggs/[a-z0-9-]+/[a-z0-9-]+/egg\\.json$"
+          }
+        }
+      }
+    }
+  }
+}

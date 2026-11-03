@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "tyravex.discord.nodejs",
+  "name": "Discord Bot - Node.js",
+  "description": "Node.js runtime for a user-provided Discord bot project.",
+  "version": "1.0.0",
+  "category": "bots",
+  "runtime": {
+    "type": "docker",
+    "image": "node:22-bookworm-slim",
+    "workingDirectory": "/app"
+  },
+  "install": {
+    "mode": "nodejs",
+    "packageManager": "npm"
+  },
+  "startup": {
+    "mode": "npm-start"
+  },
+  "variables": [
+    {
+      "name": "DISCORD_TOKEN",
+      "type": "secret",
+      "required": true
+    }
+  ]
+}

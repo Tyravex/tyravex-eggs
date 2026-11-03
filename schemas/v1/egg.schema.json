@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tyravex Egg v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "description",
+    "version",
+    "category",
+    "runtime",
+    "install",
+    "startup",
+    "variables"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(\\.[a-z][a-z0-9]*)+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "category": {
+      "enum": [
+        "bots",
+        "games",
+        "applications"
+      ]
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "image",
+        "workingDirectory"
+      ],
+      "properties": {
+        "type": {
+          "const": "docker"
+        },
+        "image": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "workingDirectory": {
+          "const": "/app"
+        }
+      }
+    },
+    "install": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "packageManager"
+      ],
+      "properties": {
+        "mode": {
+          "const": "nodejs"
+        },
+        "packageManager": {
+          "const": "npm"
+        }
+      }
+    },
+    "startup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "const": "npm-start"
+        }
+      }
+    },
+    "variables": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "type",
+          "required"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          },
+          "type": {
+            "enum": [
+              "string",
+              "secret"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
