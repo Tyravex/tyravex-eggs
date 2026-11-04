@@ -8,6 +8,22 @@
       "category": "bots",
       "version": "1.1.0",
       "path": "eggs/bots/discord-nodejs/egg.json"
+    },
+    {
+      "id": "tyravex.discord.python",
+      "name": "Discord Bot - Python",
+      "description": "Python runtime for a user-provided Discord bot project.",
+      "category": "bots",
+      "version": "1.0.0",
+      "path": "eggs/bots/discord-python/egg.json"
+    },
+    {
+      "id": "tyravex.telegram.python",
+      "name": "Telegram Bot - Python",
+      "description": "Python runtime for a user-provided Telegram bot project.",
+      "category": "bots",
+      "version": "1.0.0",
+      "path": "eggs/bots/telegram-python/egg.json"
     }
   ]
 }

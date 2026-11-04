@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "tyravex.telegram.python",
+  "name": "Telegram Bot - Python",
+  "description": "Python runtime for a user-provided Telegram bot project.",
+  "version": "1.0.0",
+  "category": "bots",
+  "runtime": {
+    "type": "docker",
+    "image": "python:3.12-slim-bookworm",
+    "workingDirectory": "/app",
+    "defaultVersion": "3.12",
+    "versions": [
+      {
+        "version": "3.11",
+        "image": "python:3.11-slim-bookworm"
+      },
+      {
+        "version": "3.12",
+        "image": "python:3.12-slim-bookworm"
+      },
+      {
+        "version": "3.13",
+        "image": "python:3.13-slim-bookworm"
+      }
+    ]
+  },
+  "install": {
+    "mode": "python",
+    "packageManager": "pip"
+  },
+  "startup": {
+    "mode": "python-file",
+    "entrypoint": "bot.py"
+  },
+  "defaultProfile": "python-telegram-bot",
+  "profiles": [
+    {
+      "id": "python-telegram-bot",
+      "name": "python-telegram-bot",
+      "startup": {
+        "mode": "python-file",
+        "entrypoint": "bot.py"
+      },
+      "runtimeVersion": "3.12"
+    },
+    {
+      "id": "aiogram",
+      "name": "Aiogram",
+      "startup": {
+        "mode": "python-file",
+        "entrypoint": "bot.py"
+      },
+      "runtimeVersion": "3.12"
+    },
+    {
+      "id": "pyrogram",
+      "name": "Pyrogram",
+      "startup": {
+        "mode": "python-file",
+        "entrypoint": "bot.py"
+      },
+      "runtimeVersion": "3.12"
+    }
+  ],
+  "variables": [
+    {
+      "name": "TELEGRAM_BOT_TOKEN",
+      "type": "secret",
+      "required": true
+    }
+  ]
+}

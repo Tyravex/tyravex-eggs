@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const eggPath = 'eggs/bots/discord-nodejs/egg.json';
-const baseFiles = ['registry.json', eggPath, 'schemas/v1/egg.schema.json', 'schemas/v1/registry.schema.json', 'scripts/validate.mjs'];
+const baseFiles = ['registry.json', eggPath, 'eggs/bots/discord-python/egg.json', 'eggs/bots/telegram-python/egg.json', 'schemas/v1/egg.schema.json', 'schemas/v1/registry.schema.json', 'scripts/validate.mjs'];
 
 async function fixture(change) {
   const root = await mkdtemp(join(tmpdir(), 'tyravex-eggs-test-'));
@@ -42,7 +42,7 @@ function rejects(name, change, expected) {
 test('accepts the canonical registry and Egg', async () => {
   const result = await fixture();
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /OK: 1 Egg\(s\) validated/);
+  assert.match(result.stdout, /OK: 3 Egg\(s\) validated/);
 });
 rejects('rejects duplicate registry IDs', async root => {
   await edit(root, 'registry.json', r => r.eggs.push({ ...r.eggs[0], path: 'eggs/bots/another/egg.json' }));

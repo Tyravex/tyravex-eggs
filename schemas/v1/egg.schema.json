@@ -77,7 +77,7 @@
             "properties": {
               "version": {
                 "type": "string",
-                "pattern": "^[0-9]+$"
+                "pattern": "^(?:[0-9]+|3\\.(?:11|12|13))$"
               },
               "image": {
                 "type": "string",
@@ -89,7 +89,7 @@
         },
         "defaultVersion": {
           "type": "string",
-          "pattern": "^[0-9]+$"
+          "pattern": "^(?:[0-9]+|3\\.(?:11|12|13))$"
         }
       }
     },
@@ -102,10 +102,16 @@
       ],
       "properties": {
         "mode": {
-          "const": "nodejs"
+          "enum": [
+            "nodejs",
+            "python"
+          ]
         },
         "packageManager": {
-          "const": "npm"
+          "enum": [
+            "npm",
+            "pip"
+          ]
         }
       }
     },
@@ -119,14 +125,15 @@
         "mode": {
           "enum": [
             "npm-start",
-            "node-file"
+            "node-file",
+            "python-file"
           ]
         },
         "entrypoint": {
           "type": "string",
           "minLength": 1,
           "maxLength": 160,
-          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[a-zA-Z0-9_./-]+\\.([cm]?js)$"
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[a-zA-Z0-9_./-]+\\.(?:[cm]?js|py)$"
         }
       }
     },
@@ -166,20 +173,21 @@
               "mode": {
                 "enum": [
                   "npm-start",
-                  "node-file"
+                  "node-file",
+                  "python-file"
                 ]
               },
               "entrypoint": {
                 "type": "string",
                 "minLength": 1,
                 "maxLength": 160,
-                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[a-zA-Z0-9_./-]+\\.([cm]?js)$"
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[a-zA-Z0-9_./-]+\\.(?:[cm]?js|py)$"
               }
             }
           },
           "runtimeVersion": {
             "type": "string",
-            "pattern": "^[0-9]+$"
+            "pattern": "^(?:[0-9]+|3\\.(?:11|12|13))$"
           }
         }
       }

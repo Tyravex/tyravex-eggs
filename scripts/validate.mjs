@@ -16,16 +16,19 @@ const allowed = (obj, keys, where) => object(obj, keys, [], where);
 const str = (v, min = 1, max = 500) => typeof v === 'string' && v.length >= min && v.length <= max;
 const idOk = (v) => str(v) && /^[a-z][a-z0-9]*(\.[a-z][a-z0-9]*)+$/.test(v);
 const versionOk = (v) => str(v) && /^\d+\.\d+\.\d+$/.test(v);
-const runtimeVersionOk = (v) => typeof v === 'string' && /^[0-9]+$/.test(v);
+const runtimeVersionOk = (v) => typeof v === 'string' && /^(?:[0-9]+|3\.(?:11|12|13))$/.test(v);
 const profileIdOk = (v) => typeof v === 'string' && /^[a-z][a-z0-9-]*$/.test(v);
 const categories = new Set(['bots', 'games', 'applications']);
-const entrypointOk = (v) => typeof v === 'string' && v.length <= 160 && /^[a-zA-Z0-9_./-]+\.[cm]?js$/.test(v) && !v.startsWith('/') && !v.split('/').some(x => x === '.' || x === '..' || x === '');
-const validateStartup = (startup, where) => {
+const entrypointOk = (v, extension) => typeof v === 'string' && v.length > 0 && v.length <= 160 && /^[a-zA-Z0-9_./-]+$/.test(v) && v.endsWith(extension) && !v.startsWith('/') && !v.split('/').some(x => x === '.' || x === '..' || x === '');
+const validateStartup = (startup, where, family) => {
   if (!object(startup, ['mode'], ['entrypoint'], where)) return;
   if (startup.mode === 'npm-start') {
+    if (family !== 'nodejs') fail(where, 'unsupported startup mode');
     if ('entrypoint' in startup) fail(where, 'npm-start must not define entrypoint');
   } else if (startup.mode === 'node-file') {
-    if (!entrypointOk(startup.entrypoint)) fail(where, 'invalid entrypoint');
+    if (family !== 'nodejs' || !entrypointOk(startup.entrypoint, '.js') && !entrypointOk(startup.entrypoint, '.cjs') && !entrypointOk(startup.entrypoint, '.mjs')) fail(where, 'invalid entrypoint');
+  } else if (startup.mode === 'python-file') {
+    if (family !== 'python' || !entrypointOk(startup.entrypoint, '.py')) fail(where, 'invalid entrypoint');
   } else fail(where, 'unsupported startup mode');
 };
 const validateEgg = (egg, where) => {
@@ -53,10 +56,13 @@ const validateEgg = (egg, where) => {
       if (defaultImage !== egg.runtime.image) fail(where, 'default runtime image mismatch');
     }
   }
+  let family = 'invalid';
   if (allowed(egg.install, ['mode', 'packageManager'], `${where}.install`)) {
-    if (egg.install.mode !== 'nodejs' || egg.install.packageManager !== 'npm') fail(where, 'unsupported install mode');
+    if (egg.install.mode === 'nodejs' && egg.install.packageManager === 'npm') family = 'nodejs';
+    else if (egg.install.mode === 'python' && egg.install.packageManager === 'pip') family = 'python';
+    else fail(where, 'unsupported install mode');
   }
-  validateStartup(egg.startup, `${where}.startup`);
+  validateStartup(egg.startup, `${where}.startup`, family);
   if ('profiles' in egg || 'defaultProfile' in egg) {
     if (!Array.isArray(egg.profiles) || egg.profiles.length < 1 || egg.profiles.length > 16) fail(where, 'invalid profiles');
     else {
@@ -67,7 +73,7 @@ const validateEgg = (egg, where) => {
         if (!profileIdOk(profile.id) || !str(profile.name, 3, 100)) fail(pw, 'invalid profile metadata');
         if (ids.has(profile.id)) fail(pw, 'duplicate profile id');
         ids.add(profile.id);
-        validateStartup(profile.startup, `${pw}.startup`);
+        validateStartup(profile.startup, `${pw}.startup`, family);
         if ('runtimeVersion' in profile && !runtimeVersions.has(profile.runtimeVersion)) fail(pw, 'profile runtime version not listed');
       }
       if (!ids.has(egg.defaultProfile)) fail(where, 'default profile not listed');

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "tyravex.discord.python",
+  "name": "Discord Bot - Python",
+  "description": "Python runtime for a user-provided Discord bot project.",
+  "version": "1.0.0",
+  "category": "bots",
+  "runtime": {
+    "type": "docker",
+    "image": "python:3.12-slim-bookworm",
+    "workingDirectory": "/app",
+    "defaultVersion": "3.12",
+    "versions": [
+      {
+        "version": "3.11",
+        "image": "python:3.11-slim-bookworm"
+      },
+      {
+        "version": "3.12",
+        "image": "python:3.12-slim-bookworm"
+      },
+      {
+        "version": "3.13",
+        "image": "python:3.13-slim-bookworm"
+      }
+    ]
+  },
+  "install": {
+    "mode": "python",
+    "packageManager": "pip"
+  },
+  "startup": {
+    "mode": "python-file",
+    "entrypoint": "bot.py"
+  },
+  "defaultProfile": "discord-py",
+  "profiles": [
+    {
+      "id": "discord-py",
+      "name": "discord.py",
+      "startup": {
+        "mode": "python-file",
+        "entrypoint": "bot.py"
+      },
+      "runtimeVersion": "3.12"
+    },
+    {
+      "id": "nextcord",
+      "name": "Nextcord",
+      "startup": {
+        "mode": "python-file",
+        "entrypoint": "bot.py"
+      },
+      "runtimeVersion": "3.12"
+    },
+    {
+      "id": "pycord",
+      "name": "Pycord",
+      "startup": {
+        "mode": "python-file",
+        "entrypoint": "bot.py"
+      },
+      "runtimeVersion": "3.12"
+    },
+    {
+      "id": "disnake",
+      "name": "Disnake",
+      "startup": {
+        "mode": "python-file",
+        "entrypoint": "bot.py"
+      },
+      "runtimeVersion": "3.12"
+    }
+  ],
+  "variables": [
+    {
+      "name": "DISCORD_TOKEN",
+      "type": "secret",
+      "required": true
+    }
+  ]
+}
