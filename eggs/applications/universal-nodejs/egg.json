@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "tyravex.universal.nodejs",
+  "name": "Universal Node.js",
+  "description": "Node.js runtime for a user-provided application.",
+  "version": "1.0.0",
+  "category": "applications",
+  "runtime": {
+    "type": "docker",
+    "image": "node:22-bookworm-slim",
+    "workingDirectory": "/app",
+    "defaultVersion": "22",
+    "versions": [
+      {
+        "version": "20",
+        "image": "node:20-bookworm-slim"
+      },
+      {
+        "version": "22",
+        "image": "node:22-bookworm-slim"
+      },
+      {
+        "version": "24",
+        "image": "node:24-bookworm-slim"
+      }
+    ]
+  },
+  "install": {
+    "mode": "nodejs",
+    "packageManager": "npm"
+  },
+  "startup": {
+    "mode": "npm-start"
+  },
+  "defaultProfile": "npm-start",
+  "profiles": [
+    {
+      "id": "npm-start",
+      "name": "npm start",
+      "startup": {
+        "mode": "npm-start"
+      },
+      "runtimeVersion": "22"
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript file",
+      "startup": {
+        "mode": "node-file",
+        "entrypoint": "index.js"
+      },
+      "runtimeVersion": "22"
+    },
+    {
+      "id": "commonjs",
+      "name": "CommonJS file",
+      "startup": {
+        "mode": "node-file",
+        "entrypoint": "index.cjs"
+      },
+      "runtimeVersion": "22"
+    },
+    {
+      "id": "esm",
+      "name": "ES Modules file",
+      "startup": {
+        "mode": "node-file",
+        "entrypoint": "index.mjs"
+      },
+      "runtimeVersion": "22"
+    }
+  ],
+  "variables": []
+}

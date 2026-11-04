@@ -8,15 +8,15 @@ import { fileURLToPath } from 'node:url';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const eggPath = 'eggs/bots/discord-nodejs/egg.json';
-const baseFiles = ['registry.json', eggPath, 'eggs/bots/discord-python/egg.json', 'eggs/bots/telegram-python/egg.json', 'schemas/v1/egg.schema.json', 'schemas/v1/registry.schema.json', 'scripts/validate.mjs'];
+const baseFiles = ['registry.json', eggPath, 'eggs/bots/discord-python/egg.json', 'eggs/bots/telegram-python/egg.json', 'eggs/bots/telegram-nodejs/egg.json', 'eggs/applications/universal-nodejs/egg.json', 'eggs/applications/universal-python/egg.json', 'schemas/v1/egg.schema.json', 'schemas/v1/registry.schema.json', 'scripts/validate.mjs'];
 
 async function fixture(change) {
   const root = await mkdtemp(join(tmpdir(), 'tyravex-eggs-test-'));
-  for (const file of baseFiles) {
-    await mkdir(dirname(join(root, file)), { recursive: true });
-    await cp(join(repo, file), join(root, file));
-  }
   try {
+    for (const file of baseFiles) {
+      await mkdir(dirname(join(root, file)), { recursive: true });
+      await cp(join(repo, file), join(root, file));
+    }
     if (change) await change(root);
     return spawnSync(process.execPath, [join(root, 'scripts/validate.mjs')], {
       cwd: root, encoding: 'utf8', timeout: 10000
@@ -39,10 +39,10 @@ function rejects(name, change, expected) {
   });
 }
 
-test('accepts the canonical registry and Egg', async () => {
+test('accepts the canonical registry and Eggs', async () => {
   const result = await fixture();
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /OK: 3 Egg\(s\) validated/);
+  assert.match(result.stdout, /OK: 6 Egg\(s\) validated/);
 });
 rejects('rejects duplicate registry IDs', async root => {
   await edit(root, 'registry.json', r => r.eggs.push({ ...r.eggs[0], path: 'eggs/bots/another/egg.json' }));

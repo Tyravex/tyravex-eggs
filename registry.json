@@ -24,6 +24,30 @@
       "category": "bots",
       "version": "1.0.0",
       "path": "eggs/bots/telegram-python/egg.json"
+    },
+    {
+      "id": "tyravex.telegram.nodejs",
+      "name": "Telegram Bot - Node.js",
+      "description": "Node.js runtime for a user-provided Telegram bot project.",
+      "category": "bots",
+      "version": "1.0.0",
+      "path": "eggs/bots/telegram-nodejs/egg.json"
+    },
+    {
+      "id": "tyravex.universal.nodejs",
+      "name": "Universal Node.js",
+      "description": "Node.js runtime for a user-provided application.",
+      "category": "applications",
+      "version": "1.0.0",
+      "path": "eggs/applications/universal-nodejs/egg.json"
+    },
+    {
+      "id": "tyravex.universal.python",
+      "name": "Universal Python",
+      "description": "Python runtime for a user-provided application.",
+      "category": "applications",
+      "version": "1.0.0",
+      "path": "eggs/applications/universal-python/egg.json"
     }
   ]
 }
