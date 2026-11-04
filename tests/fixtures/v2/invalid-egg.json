@@ -1,0 +1,33 @@
+{
+    "schemaVersion": 3,
+    "metadata": {
+        "id": "tyravex.example.invalid",
+        "name": "Invalid Example",
+        "description": "Intentionally invalid test fixture.",
+        "version": "1.0.0",
+        "category": "applications"
+    },
+    "runtime": {
+        "reference": "node:latest",
+        "workingDirectory": "/app"
+    },
+    "source": {
+        "kind": "none"
+    },
+    "network": {
+        "ports": []
+    },
+    "storage": {
+        "mounts": []
+    },
+    "lifecycle": {
+        "start": {
+            "executable": "node",
+            "args": [
+                "index.js"
+            ],
+            "command": "sh -c 'node index.js'"
+        }
+    },
+    "variables": []
+}

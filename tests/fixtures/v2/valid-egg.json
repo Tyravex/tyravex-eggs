@@ -1,0 +1,54 @@
+{
+    "schemaVersion": 2,
+    "metadata": {
+        "id": "tyravex.example.nodejs",
+        "name": "Example Node.js",
+        "description": "Test fixture for Egg v2 validation.",
+        "version": "1.0.0",
+        "category": "applications"
+    },
+    "runtime": {
+        "reference": "node:22-bookworm-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "workingDirectory": "/app"
+    },
+    "source": {
+        "kind": "none"
+    },
+    "network": {
+        "ports": [
+            {
+                "name": "http",
+                "protocol": "tcp",
+                "containerPort": 3000
+            },
+            {
+                "name": "game",
+                "protocol": "udp",
+                "containerPort": 3001
+            }
+        ]
+    },
+    "storage": {
+        "mounts": [
+            {
+                "name": "data",
+                "containerPath": "/app/data"
+            }
+        ]
+    },
+    "lifecycle": {
+        "start": {
+            "executable": "node",
+            "args": [
+                "index.js"
+            ]
+        }
+    },
+    "variables": [
+        {
+            "name": "APP_TOKEN",
+            "type": "secret",
+            "required": true
+        }
+    ]
+}

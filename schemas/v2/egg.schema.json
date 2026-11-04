@@ -260,8 +260,16 @@
     "allOf": [
         {
             "if": {
+                "type": "object",
+                "required": [
+                    "source"
+                ],
                 "properties": {
                     "source": {
+                        "type": "object",
+                        "required": [
+                            "kind"
+                        ],
                         "properties": {
                             "kind": {
                                 "const": "archive"
@@ -271,21 +279,34 @@
                 }
             },
             "then": {
+                "type": "object",
                 "properties": {
                     "source": {
+                        "type": "object",
                         "required": [
-                            "kind",
                             "url",
                             "sha256"
-                        ]
+                        ],
+                        "properties": {
+                            "url": true,
+                            "sha256": true
+                        }
                     }
                 }
             }
         },
         {
             "if": {
+                "type": "object",
+                "required": [
+                    "source"
+                ],
                 "properties": {
                     "source": {
+                        "type": "object",
+                        "required": [
+                            "kind"
+                        ],
                         "properties": {
                             "kind": {
                                 "const": "none"
@@ -295,21 +316,13 @@
                 }
             },
             "then": {
+                "type": "object",
                 "properties": {
                     "source": {
-                        "not": {
-                            "anyOf": [
-                                {
-                                    "required": [
-                                        "url"
-                                    ]
-                                },
-                                {
-                                    "required": [
-                                        "sha256"
-                                    ]
-                                }
-                            ]
+                        "type": "object",
+                        "properties": {
+                            "url": false,
+                            "sha256": false
                         }
                     }
                 }

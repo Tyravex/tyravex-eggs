@@ -1,0 +1,22 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Build and coverage outputs
+coverage/
+dist/
+.tmp/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
