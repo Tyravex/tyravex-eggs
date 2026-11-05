@@ -1,0 +1,45 @@
+{
+    "schemaVersion": 2,
+    "metadata": {
+        "id": "tyravex.minecraft.java.vanilla",
+        "name": "Minecraft Java - Vanilla",
+        "description": "Declarative Minecraft Java Vanilla server template using a user-provided server JAR.",
+        "version": "1.0.0",
+        "category": "games"
+    },
+    "runtime": {
+        "reference": "docker.io/library/eclipse-temurin@sha256:0eda5830ed7b669abc246a8dc520ea8a23cab06f9a8d4b6964109e2f2394e46f",
+        "workingDirectory": "/app"
+    },
+    "source": {
+        "kind": "none"
+    },
+    "network": {
+        "ports": [
+            {
+                "name": "minecraft",
+                "protocol": "tcp",
+                "containerPort": 25565
+            }
+        ]
+    },
+    "storage": {
+        "mounts": [
+            {
+                "name": "minecraft-data",
+                "containerPath": "/data"
+            }
+        ]
+    },
+    "lifecycle": {
+        "start": {
+            "executable": "java",
+            "args": [
+                "-jar",
+                "/data/server.jar",
+                "nogui"
+            ]
+        }
+    },
+    "variables": []
+}

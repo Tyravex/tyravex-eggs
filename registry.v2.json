@@ -1,4 +1,13 @@
 {
   "schemaVersion": 2,
-  "eggs": []
+  "eggs": [
+    {
+      "id": "tyravex.minecraft.java.vanilla",
+      "name": "Minecraft Java - Vanilla",
+      "description": "Declarative Minecraft Java Vanilla server template using a user-provided server JAR.",
+      "category": "games",
+      "version": "1.0.0",
+      "path": "eggs-v2/games/minecraft-java-vanilla/egg.json"
+    }
+  ]
 }
