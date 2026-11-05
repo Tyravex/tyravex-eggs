@@ -5,7 +5,7 @@ import { readFile } from 'node:fs/promises';
 const loadEgg = async (name) =>
     JSON.parse(
         await readFile(
-            new URL(`../eggs/bots/${name}/egg.json`, import.meta.url),
+            new URL(`../../../../eggs/bots/${name}/egg.json`, import.meta.url),
             'utf8'
         )
     );

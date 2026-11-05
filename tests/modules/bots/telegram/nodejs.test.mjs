@@ -5,7 +5,7 @@ import { readFile } from 'node:fs/promises';
 const loadEgg = async () =>
     JSON.parse(
         await readFile(
-            new URL('../eggs/bots/telegram-nodejs/egg.json', import.meta.url),
+            new URL('../../../../eggs/bots/telegram-nodejs/egg.json', import.meta.url),
             'utf8'
         )
     );

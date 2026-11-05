@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 const schema = JSON.parse(
     await readFile(
-        new URL('../schemas/v2/egg.schema.json', import.meta.url),
+        new URL('../../../schemas/v2/egg.schema.json', import.meta.url),
         'utf8'
     )
 );

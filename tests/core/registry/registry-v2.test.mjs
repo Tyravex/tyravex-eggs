@@ -9,11 +9,11 @@ import {
 } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { validateRegistryV2 } from '../scripts/validate-registry-v2.mjs';
+import { validateRegistryV2 } from '../../../scripts/validate-registry-v2.mjs';
 
 const fixture = JSON.parse(
     await readFile(
-        new URL('./fixtures/v2/valid-egg.json', import.meta.url),
+        new URL('../../../tests/fixtures/v2/valid-egg.json', import.meta.url),
         'utf8'
     )
 );

@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { validateEggV2 } from '../scripts/validate-v2.mjs';
+import { validateEggV2 } from '../../../scripts/validate-v2.mjs';
 
 async function fixture(name) {
     return JSON.parse(
         await readFile(
-            new URL(`./fixtures/v2/${name}`, import.meta.url),
+            new URL(`../../../tests/fixtures/v2/${name}`, import.meta.url),
             'utf8'
         )
     );

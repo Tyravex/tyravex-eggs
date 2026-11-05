@@ -1,13 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { validateEggV2 } from '../scripts/validate-v2.mjs';
-import { validateRegistryV2 } from '../scripts/validate-registry-v2.mjs';
+import { validateEggV2 } from '../../../../scripts/validate-v2.mjs';
+import { validateRegistryV2 } from '../../../../scripts/validate-registry-v2.mjs';
 
 const egg = JSON.parse(
     await readFile(
         new URL(
-            '../eggs-v2/games/minecraft-java-vanilla/egg.json',
+            '../../../../eggs-v2/games/minecraft-java-vanilla/egg.json',
             import.meta.url
         ),
         'utf8'
