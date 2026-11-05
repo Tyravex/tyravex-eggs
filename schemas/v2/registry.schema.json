@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tyravex/tyravex-eggs/blob/main/schemas/v2/registry.schema.json",
+  "title": "Tyravex Egg v2 Registry",
+  "description": "Versioned registry of declarative Egg v2 manifests.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "eggs"],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "eggs": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "category",
+        "version",
+        "path"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(\\.[a-z][a-z0-9]*)+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "enum": ["bots", "games", "applications"]
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^eggs-v2/(bots|games|applications)/[a-z0-9-]+/egg\\.json$"
+        }
+      }
+    }
+  }
+}
