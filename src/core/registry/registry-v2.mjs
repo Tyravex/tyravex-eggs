@@ -3,6 +3,7 @@ import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import { validateEggV2 } from '../validation/egg-v2.mjs';
+import { readSafeJson } from '../security/safe-file.mjs';
 
 const repositoryRoot = resolve(
     dirname(fileURLToPath(import.meta.url)),
@@ -94,14 +95,15 @@ async function discoverManifests(root, errors) {
 }
 
 export async function validateRegistryV2(
-    rootDir = repositoryRoot
+    rootDir = repositoryRoot,
+    options = {}
 ) {
     const root = resolve(rootDir);
     const errors = [];
     let registry;
 
     try {
-        registry = await readJson(resolve(root, 'registry.v2.json'));
+        registry = await readSafeJson(root, 'registry.v2.json');
     } catch (error) {
         return {
             valid: false,
@@ -127,7 +129,7 @@ export async function validateRegistryV2(
     let legacyRegistry;
 
     try {
-        legacyRegistry = await readJson(resolve(root, 'registry.json'));
+        legacyRegistry = await readSafeJson(root, 'registry.json');
 
         if (
             legacyRegistry.schemaVersion !== 1 ||
@@ -235,6 +237,10 @@ export async function validateRegistryV2(
         }
     } catch (error) {
         errors.push(`eggs-v2: cannot scan directory: ${error.message}`);
+    }
+
+    if (errors.length === 0 && options.onValidatedRegistry) {
+        options.onValidatedRegistry(structuredClone(registry.eggs));
     }
 
     return {

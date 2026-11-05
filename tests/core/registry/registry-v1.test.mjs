@@ -31,7 +31,8 @@ const baseFiles = [
   'schemas/v1/egg.schema.json',
   'schemas/v1/registry.schema.json',
   'scripts/validate.mjs',
-  'src/core/registry/registry-v1.mjs'
+  'src/core/registry/registry-v1.mjs',
+  'src/core/security/safe-file.mjs'
 ];
 
 async function fixture(change) {
