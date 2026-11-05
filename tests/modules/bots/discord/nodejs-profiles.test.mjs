@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
 const eggPath = 'eggs/bots/discord-nodejs/egg.json';
-const files = ['registry.json', eggPath, 'eggs/bots/discord-python/egg.json', 'eggs/bots/telegram-python/egg.json', 'eggs/bots/telegram-nodejs/egg.json', 'eggs/applications/universal-nodejs/egg.json', 'eggs/applications/universal-python/egg.json', 'schemas/v1/egg.schema.json', 'schemas/v1/registry.schema.json', 'scripts/validate.mjs'];
+const files = ['registry.json', eggPath, 'eggs/bots/discord-python/egg.json', 'eggs/bots/telegram-python/egg.json', 'eggs/bots/telegram-nodejs/egg.json', 'eggs/applications/universal-nodejs/egg.json', 'eggs/applications/universal-python/egg.json', 'schemas/v1/egg.schema.json', 'schemas/v1/registry.schema.json', 'scripts/validate.mjs', 'src/core/registry/registry-v1.mjs'];
 async function run(change) {
   const root = await mkdtemp(join(tmpdir(), 'tyravex-profiles-'));
   try {
