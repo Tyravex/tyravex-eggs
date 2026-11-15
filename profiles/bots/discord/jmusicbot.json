@@ -1,0 +1,14 @@
+{
+  "application": {
+    "id": "jmusicbot",
+    "name": "JMusicBot",
+    "platform": "discord",
+    "runtime": "java",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/jagrosh/MusicBot",
+    "description": "Discord music bot distributed as a Java application.",
+    "requirements": [
+      "Needs a verified release JAR downloader, Java runtime and config.txt editing."
+    ]
+  }
+}

@@ -15,6 +15,8 @@ npm run validate
 ## Layout
 
 - [`registry.json`](registry.json) — catalog index
+- [`profiles/`](profiles/) - application authoring metadata
+- [`applications.json`](applications.json) - application discovery index
 - [`eggs/`](eggs/) — one service definition per directory
 - [`schemas/v1/`](schemas/v1/) — versioned JSON Schema contracts
 - [`scripts/`](scripts/) — repository tooling
@@ -22,7 +24,8 @@ npm run validate
 
 ## Service guides
 
-- [CaseWise Discord bot](docs/eggs/casewise.md) — project selection, prerequisites and test preparation.
+- [Application catalog and profiles](docs/eggs/profiles.md)
+- [Application index](applications.json): 17 projects with explicit availability and requirements.
 
 ## Related projects
 

@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "muse",
+    "name": "Muse",
+    "platform": "discord",
+    "runtime": "nodejs",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/codetheweb/muse",
+    "description": "Self-hosted Discord music bot.",
+    "requirements": [
+      "The historical upstream URL must be resolved and its current distribution verified before enabling installation.",
+      "Needs verified audio dependencies and application credentials."
+    ]
+  }
+}

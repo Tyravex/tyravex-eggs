@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "corpbot",
+    "name": "CorpBot.py",
+    "platform": "discord",
+    "runtime": "python",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/corpnewt/CorpBot.py",
+    "description": "Multi-purpose Python Discord bot.",
+    "requirements": [
+      "Needs settings_dict.json generation and its project-specific Python dependency installer.",
+      "The historical Python 3.8 claim is not a verified current compatibility range."
+    ]
+  }
+}

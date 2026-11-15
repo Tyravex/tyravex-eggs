@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "phantombot",
+    "name": "PhantomBot",
+    "platform": "twitch",
+    "runtime": "java",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/PhantomBot/PhantomBot",
+    "description": "Java-powered Twitch bot with a web administration panel.",
+    "requirements": [
+      "Needs the Java/prebuilt release installer and persistent configuration.",
+      "Needs port 25000 and Twitch OAuth setup through the application web panel."
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "parkertron",
+    "name": "parkertron",
+    "platform": "discord",
+    "runtime": "go",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/parkervcp/parkertron",
+    "description": "Configurable community chatbot.",
+    "requirements": [
+      "Needs a Go/CGO installer with Tesseract OCR and Leptonica.",
+      "Needs YAML/JSON configuration editing."
+    ]
+  }
+}

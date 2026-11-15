@@ -15,8 +15,8 @@ const catalogPromise = loadCatalog();
 test('panel lists all registered Eggs', async () => {
     const result = listPanelEggs(await catalogPromise);
 
-    assert.equal(result.items.length, 8);
-    assert.equal(result.pagination.total, 8);
+    assert.equal(result.items.length, 7);
+    assert.equal(result.pagination.total, 7);
 });
 
 test('panel searches by Egg name', async () => {
@@ -44,7 +44,7 @@ test('panel filters by category', async () => {
         category: 'bots'
     });
 
-    assert.equal(result.pagination.total, 5);
+    assert.equal(result.pagination.total, 4);
 });
 
 test('panel filters by format version', async () => {
@@ -97,7 +97,7 @@ test('panel returns empty page beyond last page', async () => {
     });
 
     assert.equal(result.items.length, 0);
-    assert.equal(result.pagination.total, 8);
+    assert.equal(result.pagination.total, 7);
     assert.equal(result.pagination.hasNextPage, false);
 });
 
@@ -137,20 +137,20 @@ test('panel provides category counts', async () => {
 
     assert.equal(
         categories.reduce((sum, item) => sum + item.count, 0),
-        8
+        7
     );
 
     assert.equal(
         categories.find(item => item.id === 'bots')?.count,
-        5
+        4
     );
 });
 
 test('panel provides dashboard statistics', async () => {
     const stats = getPanelCatalogStats(await catalogPromise);
 
-    assert.equal(stats.total, 8);
-    assert.equal(stats.byFormat.v1, 7);
+    assert.equal(stats.total, 7);
+    assert.equal(stats.byFormat.v1, 6);
     assert.equal(stats.byFormat.v2, 1);
 });
 

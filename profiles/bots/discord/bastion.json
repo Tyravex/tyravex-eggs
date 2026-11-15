@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "bastion",
+    "name": "Bastion",
+    "platform": "discord",
+    "runtime": "nodejs",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/TheBastionBot/Bastion",
+    "description": "Multi-purpose community Discord bot.",
+    "requirements": [
+      "Needs verified native audio dependencies, current configuration and command registration.",
+      "Check the current upstream database requirements instead of the older MongoDB Egg recipe."
+    ]
+  }
+}

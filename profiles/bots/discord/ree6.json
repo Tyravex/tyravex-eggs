@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "ree6",
+    "name": "Ree6",
+    "platform": "discord",
+    "runtime": "java",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/Ree6-Applications/Ree6",
+    "description": "Multi-purpose Java Discord bot.",
+    "requirements": [
+      "Needs a Java/release installer and config.yml editing.",
+      "Additional application integrations may require API credentials and networking."
+    ]
+  }
+}

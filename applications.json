@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "applications": [
+    {
+      "id": "aoede",
+      "name": "Aoede",
+      "platform": "discord",
+      "runtime": "rust",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/codetheweb/aoede",
+      "description": "Spotify-to-Discord audio bot.",
+      "requirements": [
+        "Needs the approved prebuilt-image or Rust/native dependency installer.",
+        "Requires Spotify Premium and Spotify credentials in addition to a Discord bot token."
+      ]
+    },
+    {
+      "id": "atl-bot",
+      "name": "ATL Bot",
+      "platform": "discord",
+      "runtime": "nodejs",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/ATLauncher/discord-bot",
+      "description": "ATLauncher community Discord bot.",
+      "requirements": [
+        "Needs verified Prisma/native runtime compatibility and an initialized PostgreSQL database.",
+        "Configure NODE_CONFIG for the target Discord server; some upstream behavior is ATLauncher-specific."
+      ]
+    },
+    {
+      "id": "bastion",
+      "name": "Bastion",
+      "platform": "discord",
+      "runtime": "nodejs",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/TheBastionBot/Bastion",
+      "description": "Multi-purpose community Discord bot.",
+      "requirements": [
+        "Needs verified native audio dependencies, current configuration and command registration.",
+        "Check the current upstream database requirements instead of the older MongoDB Egg recipe."
+      ]
+    },
+    {
+      "id": "corpbot",
+      "name": "CorpBot.py",
+      "platform": "discord",
+      "runtime": "python",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/corpnewt/CorpBot.py",
+      "description": "Multi-purpose Python Discord bot.",
+      "requirements": [
+        "Needs settings_dict.json generation and its project-specific Python dependency installer.",
+        "The historical Python 3.8 claim is not a verified current compatibility range."
+      ]
+    },
+    {
+      "id": "dynamica",
+      "name": "Dynamica",
+      "platform": "discord",
+      "runtime": "nodejs",
+      "status": "INSTALLABLE",
+      "upstreamUrl": "https://github.com/DynamicaBot/Dynamica-V2",
+      "description": "Dynamic Discord voice-channel management.",
+      "requirements": [
+        "Requires TOKEN and an existing prepared PostgreSQL database via POSTGRES_URL.",
+        "Requires the updated Agent pnpm capability. No database is provisioned automatically.",
+        "The optional HTTP API is not exposed by the outbound-only installer. Discord login has not been smoke-tested."
+      ],
+      "eggKey": "tyravex.discord.nodejs",
+      "profileId": "dynamica"
+    },
+    {
+      "id": "fragbot",
+      "name": "fragbot",
+      "platform": "discord",
+      "runtime": "go",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/fragforce/fragbot",
+      "description": "Fragforce community Discord bot.",
+      "requirements": [
+        "Needs a Go build installer and verified application configuration handling."
+      ]
+    },
+    {
+      "id": "jmusicbot",
+      "name": "JMusicBot",
+      "platform": "discord",
+      "runtime": "java",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/jagrosh/MusicBot",
+      "description": "Discord music bot distributed as a Java application.",
+      "requirements": [
+        "Needs a verified release JAR downloader, Java runtime and config.txt editing."
+      ]
+    },
+    {
+      "id": "jts3servermod",
+      "name": "JTS3ServerMod",
+      "platform": "teamspeak",
+      "runtime": "java",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://www.stefan1200.de",
+      "description": "TeamSpeak 3 server-management bot.",
+      "requirements": [
+        "Needs the verified official release downloader, Java runtime and configuration file editing.",
+        "Requires connection settings and credentials for a TeamSpeak ServerQuery account."
+      ]
+    },
+    {
+      "id": "muse",
+      "name": "Muse",
+      "platform": "discord",
+      "runtime": "nodejs",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/codetheweb/muse",
+      "description": "Self-hosted Discord music bot.",
+      "requirements": [
+        "The historical upstream URL must be resolved and its current distribution verified before enabling installation.",
+        "Needs verified audio dependencies and application credentials."
+      ]
+    },
+    {
+      "id": "parkertron",
+      "name": "parkertron",
+      "platform": "discord",
+      "runtime": "go",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/parkervcp/parkertron",
+      "description": "Configurable community chatbot.",
+      "requirements": [
+        "Needs a Go/CGO installer with Tesseract OCR and Leptonica.",
+        "Needs YAML/JSON configuration editing."
+      ]
+    },
+    {
+      "id": "phantombot",
+      "name": "PhantomBot",
+      "platform": "twitch",
+      "runtime": "java",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/PhantomBot/PhantomBot",
+      "description": "Java-powered Twitch bot with a web administration panel.",
+      "requirements": [
+        "Needs the Java/prebuilt release installer and persistent configuration.",
+        "Needs port 25000 and Twitch OAuth setup through the application web panel."
+      ]
+    },
+    {
+      "id": "pixel-bot",
+      "name": "pixel-bot",
+      "platform": "discord",
+      "runtime": "python",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/Ispira/pixel-bot",
+      "description": "Discord.py bot with server-specific configuration.",
+      "requirements": [
+        "Needs config/config.json and plugin settings editing.",
+        "Upstream documents an old development Python/discord.py stack; compatibility needs testing."
+      ]
+    },
+    {
+      "id": "redbot",
+      "name": "Red-DiscordBot",
+      "platform": "discord",
+      "runtime": "python",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/Cog-Creators/Red-DiscordBot",
+      "description": "Modular multi-purpose Discord bot.",
+      "requirements": [
+        "Needs a Red-specific pip installer, instance setup and redbot executable startup.",
+        "Requires additional system dependencies; the generic Python entrypoint is insufficient."
+      ]
+    },
+    {
+      "id": "ree6",
+      "name": "Ree6",
+      "platform": "discord",
+      "runtime": "java",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/Ree6-Applications/Ree6",
+      "description": "Multi-purpose Java Discord bot.",
+      "requirements": [
+        "Needs a Java/release installer and config.yml editing.",
+        "Additional application integrations may require API credentials and networking."
+      ]
+    },
+    {
+      "id": "sinusbot",
+      "name": "SinusBot",
+      "platform": "teamspeak",
+      "runtime": "native",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/SinusBot/docker",
+      "description": "Music bot for TeamSpeak 3 and Discord.",
+      "requirements": [
+        "Needs the approved native/prebuilt image installer, persistent data and HTTP port allocation.",
+        "Verify the upstream licensing terms before hosting commercial instances."
+      ]
+    },
+    {
+      "id": "sogebot",
+      "name": "SogeBot",
+      "platform": "twitch",
+      "runtime": "nodejs",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/sogebot/sogeBot",
+      "description": "Twitch chat and streaming companion bot.",
+      "requirements": [
+        "Needs native dependency verification, Twitch OAuth setup and an HTTP port allocation."
+      ]
+    },
+    {
+      "id": "voicetwine",
+      "name": "VoiceTwine",
+      "platform": "discord",
+      "runtime": "nodejs",
+      "status": "PREVIEW",
+      "upstreamUrl": "https://github.com/Twijn/VoiceTwine",
+      "description": "Dynamic Discord voice-channel manager.",
+      "requirements": [
+        "Needs pnpm, native dependency verification and an initialized MariaDB database.",
+        "Needs explicit application migration and Discord client credentials support."
+      ]
+    }
+  ]
+}

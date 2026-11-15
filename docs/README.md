@@ -20,7 +20,6 @@ definitions for the Tyravex hosting ecosystem.
 
 ## Service definitions
 
-- [CaseWise Discord bot](eggs/casewise.md)
 - [Minecraft Java Vanilla v2](minecraft-java-vanilla-v2.md)
 
 ## Development and security
@@ -36,5 +35,5 @@ definitions for the Tyravex hosting ecosystem.
 - Tyravex Agent: provisioning and container lifecycle.
 - Tyravex Plugins: independent plugin ecosystem.
 
-The Panel catalog browser and automatic Egg update workflow
-are planned features, not current repository functionality.
+The Panel owns catalog browsing, approval and automatic update policy.
+This repository provides the versioned data and validation tooling.

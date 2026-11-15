@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "pixel-bot",
+    "name": "pixel-bot",
+    "platform": "discord",
+    "runtime": "python",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/Ispira/pixel-bot",
+    "description": "Discord.py bot with server-specific configuration.",
+    "requirements": [
+      "Needs config/config.json and plugin settings editing.",
+      "Upstream documents an old development Python/discord.py stack; compatibility needs testing."
+    ]
+  }
+}

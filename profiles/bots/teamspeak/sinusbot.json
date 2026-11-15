@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "sinusbot",
+    "name": "SinusBot",
+    "platform": "teamspeak",
+    "runtime": "native",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/SinusBot/docker",
+    "description": "Music bot for TeamSpeak 3 and Discord.",
+    "requirements": [
+      "Needs the approved native/prebuilt image installer, persistent data and HTTP port allocation.",
+      "Verify the upstream licensing terms before hosting commercial instances."
+    ]
+  }
+}

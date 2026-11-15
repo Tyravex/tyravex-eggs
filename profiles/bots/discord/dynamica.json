@@ -1,0 +1,78 @@
+{
+  "application": {
+    "id": "dynamica",
+    "name": "Dynamica",
+    "platform": "discord",
+    "runtime": "nodejs",
+    "status": "INSTALLABLE",
+    "upstreamUrl": "https://github.com/DynamicaBot/Dynamica-V2",
+    "description": "Dynamic Discord voice-channel management.",
+    "requirements": [
+      "Requires TOKEN and an existing prepared PostgreSQL database via POSTGRES_URL.",
+      "Requires the updated Agent pnpm capability. No database is provisioned automatically.",
+      "The optional HTTP API is not exposed by the outbound-only installer. Discord login has not been smoke-tested."
+    ],
+    "eggKey": "tyravex.discord.nodejs",
+    "profileId": "dynamica"
+  },
+  "eggId": "tyravex.discord.nodejs",
+  "profile": {
+    "id": "dynamica",
+    "name": "Dynamica",
+    "startup": {
+      "mode": "node-file",
+      "entrypoint": "dist/main.js"
+    },
+    "runtimeVersion": "22",
+    "install": {
+      "mode": "nodejs",
+      "packageManager": "pnpm"
+    },
+    "application": {
+      "description": "Dynamic voice-channel management for Discord.",
+      "author": "DynamicaBot",
+      "version": "3.3.6 (main)",
+      "repositoryUrl": "https://github.com/DynamicaBot/Dynamica-V2.git",
+      "reference": "main",
+      "subdirectory": ".",
+      "requirements": "An initialized PostgreSQL database and TOKEN / POSTGRES_URL are required. Requires the Agent pnpm capability. No database is provisioned and the optional HTTP API is not exposed. Discord login has not been smoke-tested."
+    },
+    "variables": [
+      {
+        "name": "TOKEN",
+        "required": true,
+        "secret": true
+      },
+      {
+        "name": "POSTGRES_URL",
+        "required": true,
+        "secret": true
+      },
+      {
+        "name": "NODE_ENV",
+        "required": false,
+        "secret": false
+      },
+      {
+        "name": "SENTRY_DSN",
+        "required": false,
+        "secret": true
+      },
+      {
+        "name": "MQTT_URL",
+        "required": false,
+        "secret": false
+      },
+      {
+        "name": "MQTT_USER",
+        "required": false,
+        "secret": false
+      },
+      {
+        "name": "MQTT_PASS",
+        "required": false,
+        "secret": true
+      }
+    ]
+  }
+}

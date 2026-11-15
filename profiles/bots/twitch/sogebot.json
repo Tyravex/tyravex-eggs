@@ -1,0 +1,14 @@
+{
+  "application": {
+    "id": "sogebot",
+    "name": "SogeBot",
+    "platform": "twitch",
+    "runtime": "nodejs",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/sogebot/sogeBot",
+    "description": "Twitch chat and streaming companion bot.",
+    "requirements": [
+      "Needs native dependency verification, Twitch OAuth setup and an HTTP port allocation."
+    ]
+  }
+}

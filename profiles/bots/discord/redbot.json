@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "redbot",
+    "name": "Red-DiscordBot",
+    "platform": "discord",
+    "runtime": "python",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/Cog-Creators/Red-DiscordBot",
+    "description": "Modular multi-purpose Discord bot.",
+    "requirements": [
+      "Needs a Red-specific pip installer, instance setup and redbot executable startup.",
+      "Requires additional system dependencies; the generic Python entrypoint is insufficient."
+    ]
+  }
+}

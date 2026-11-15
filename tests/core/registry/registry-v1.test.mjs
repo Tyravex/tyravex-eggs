@@ -23,7 +23,6 @@ const eggPath = 'eggs/bots/discord-nodejs/egg.json';
 const baseFiles = [
   'registry.json',
   eggPath,
-  'eggs/bots/discord-casewise/egg.json',
   'eggs/bots/discord-python/egg.json',
   'eggs/bots/telegram-python/egg.json',
   'eggs/bots/telegram-nodejs/egg.json',
@@ -118,7 +117,7 @@ test('accepts the canonical registry and Eggs', async () => {
 
   assert.match(
     result.stdout,
-    /OK: 7 Egg\(s\) validated/
+    /OK: 6 Egg\(s\) validated/
   );
 });
 

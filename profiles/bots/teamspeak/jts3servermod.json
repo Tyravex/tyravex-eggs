@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "jts3servermod",
+    "name": "JTS3ServerMod",
+    "platform": "teamspeak",
+    "runtime": "java",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://www.stefan1200.de",
+    "description": "TeamSpeak 3 server-management bot.",
+    "requirements": [
+      "Needs the verified official release downloader, Java runtime and configuration file editing.",
+      "Requires connection settings and credentials for a TeamSpeak ServerQuery account."
+    ]
+  }
+}

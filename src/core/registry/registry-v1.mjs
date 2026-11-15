@@ -89,7 +89,7 @@ export async function validateRegistryV1(rootDir = repositoryRoot, options = {})
     }
     let family = 'invalid';
     if (allowed(egg.install, ['mode', 'packageManager'], `${where}.install`)) {
-      if (egg.install.mode === 'nodejs' && egg.install.packageManager === 'npm') family = 'nodejs';
+      if (egg.install.mode === 'nodejs' && ['npm', 'pnpm'].includes(egg.install.packageManager)) family = 'nodejs';
       else if (egg.install.mode === 'python' && egg.install.packageManager === 'pip') family = 'python';
       else fail(where, 'unsupported install mode');
     }
@@ -100,12 +100,36 @@ export async function validateRegistryV1(rootDir = repositoryRoot, options = {})
         const ids = new Set();
         for (const [i, profile] of egg.profiles.entries()) {
           const pw = `${where}.profiles[${i}]`;
-          if (!object(profile, ['id', 'name', 'startup'], ['runtimeVersion'], pw)) continue;
+          if (!object(profile, ['id', 'name', 'startup'], ['runtimeVersion', 'application', 'variables', 'install'], pw)) continue;
           if (!profileIdOk(profile.id) || !str(profile.name, 3, 100)) fail(pw, 'invalid profile metadata');
           if (ids.has(profile.id)) fail(pw, 'duplicate profile id');
           ids.add(profile.id);
           validateStartup(profile.startup, `${pw}.startup`, family);
           if ('runtimeVersion' in profile && !runtimeVersions.has(profile.runtimeVersion)) fail(pw, 'profile runtime version not listed');
+          if ('install' in profile && allowed(profile.install, ['mode', 'packageManager'], `${pw}.install`)) {
+            if (profile.install.mode !== family || !(family === 'nodejs' ? ['npm', 'pnpm'].includes(profile.install.packageManager) : profile.install.packageManager === 'pip')) fail(pw, 'invalid profile installer');
+          }
+          if ('application' in profile) {
+            const app = profile.application;
+            if (object(app, ['description', 'author', 'version', 'repositoryUrl', 'reference', 'subdirectory'], ['requirements'], `${pw}.application`)) {
+              if (!str(app.description, 1, 1000) || !str(app.author, 1, 100) || !str(app.version, 1, 100) ||
+                !str(app.repositoryUrl, 1, 255) || !/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(?:\.git)?$/.test(app.repositoryUrl) ||
+                !str(app.reference, 1, 160) || /[\s~^:?*\[\\\x00-\x1f]/.test(app.reference) ||
+                !str(app.subdirectory, 1, 160) || !/^(?:\.|[A-Za-z0-9_-][A-Za-z0-9_./-]*)$/.test(app.subdirectory) || app.subdirectory.split('/').includes('..') ||
+                ('requirements' in app && !str(app.requirements, 1, 1000))) fail(pw, 'invalid application profile');
+            }
+          }
+          if ('variables' in profile) {
+            if (!Array.isArray(profile.variables) || profile.variables.length > 64) fail(pw, 'invalid profile variables');
+            else {
+              const names = new Set();
+              for (const variable of profile.variables) {
+                if (!allowed(variable, ['name', 'required', 'secret'], `${pw}.variables`)) continue;
+                if (typeof variable.name !== 'string' || !/^[A-Z][A-Z0-9_]{0,63}$/.test(variable.name) || names.has(variable.name) || typeof variable.required !== 'boolean' || typeof variable.secret !== 'boolean') fail(pw, 'invalid or duplicate profile variable');
+                names.add(variable.name);
+              }
+            }
+          }
         }
         if (!ids.has(egg.defaultProfile)) fail(where, 'default profile not listed');
       }

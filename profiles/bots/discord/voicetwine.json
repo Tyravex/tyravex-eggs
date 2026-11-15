@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "voicetwine",
+    "name": "VoiceTwine",
+    "platform": "discord",
+    "runtime": "nodejs",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/Twijn/VoiceTwine",
+    "description": "Dynamic Discord voice-channel manager.",
+    "requirements": [
+      "Needs pnpm, native dependency verification and an initialized MariaDB database.",
+      "Needs explicit application migration and Discord client credentials support."
+    ]
+  }
+}

@@ -110,6 +110,7 @@
         "packageManager": {
           "enum": [
             "npm",
+            "pnpm",
             "pip"
           ]
         }
@@ -188,6 +189,104 @@
           "runtimeVersion": {
             "type": "string",
             "pattern": "^(?:[0-9]+|3\\.(?:11|12|13))$"
+          },
+          "application": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "description",
+              "author",
+              "version",
+              "repositoryUrl",
+              "reference",
+              "subdirectory"
+            ],
+            "properties": {
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "author": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "repositoryUrl": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\\.git)?$"
+              },
+              "reference": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "subdirectory": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "requirements": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              }
+            }
+          },
+          "variables": {
+            "type": "array",
+            "maxItems": 64,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "required",
+                "secret"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Z][A-Z0-9_]{0,63}$"
+                },
+                "required": {
+                  "type": "boolean"
+                },
+                "secret": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "install": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mode",
+              "packageManager"
+            ],
+            "properties": {
+              "mode": {
+                "enum": [
+                  "nodejs",
+                  "python"
+                ]
+              },
+              "packageManager": {
+                "enum": [
+                  "npm",
+                  "pnpm",
+                  "pip"
+                ]
+              }
+            }
           }
         }
       }

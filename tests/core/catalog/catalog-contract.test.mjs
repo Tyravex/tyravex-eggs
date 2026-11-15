@@ -47,7 +47,7 @@ test('filtering does not change the original catalog', async () => {
         formatVersion: 2
     });
 
-    assert.equal(catalog.length, 8);
+    assert.equal(catalog.length, 7);
 });
 
 test('findEgg works with an empty catalog', () => {

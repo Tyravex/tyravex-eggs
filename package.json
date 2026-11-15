@@ -5,9 +5,10 @@
   "type": "module",
   "description": "Tyravex Egg registry and validation",
   "scripts": {
-    "validate": "node scripts/validate.mjs && node scripts/check-schemas.mjs && node scripts/validate-registry-v2.mjs",
+    "validate": "node scripts/validate.mjs && node scripts/check-schemas.mjs && node scripts/validate-registry-v2.mjs && node scripts/check-application-profiles.mjs",
     "test": "node --test",
-    "check": "npm run validate && npm run test"
+    "check": "npm run validate && npm run test",
+    "build:profiles": "node scripts/build-application-catalog.mjs"
   },
   "engines": {
     "node": ">=20"

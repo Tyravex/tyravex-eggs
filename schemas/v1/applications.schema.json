@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tyravex application catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "applications"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "applications": {
+      "type": "array",
+      "maxItems": 128,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "platform",
+          "runtime",
+          "status",
+          "upstreamUrl",
+          "description",
+          "requirements"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "upstreamUrl": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "eggKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "profileId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "platform": {
+            "enum": [
+              "discord",
+              "twitch",
+              "teamspeak"
+            ]
+          },
+          "runtime": {
+            "enum": [
+              "nodejs",
+              "python",
+              "go",
+              "rust",
+              "java",
+              "native"
+            ]
+          },
+          "status": {
+            "enum": [
+              "INSTALLABLE",
+              "PREVIEW"
+            ]
+          },
+          "requirements": {
+            "type": "array",
+            "maxItems": 12,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "INSTALLABLE"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "eggKey",
+                "profileId"
+              ],
+              "properties": {
+                "eggKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "profileId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "PREVIEW"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "requirements": {
+                  "minItems": 1,
+                  "type": "array"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

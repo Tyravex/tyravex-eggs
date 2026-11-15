@@ -1,0 +1,15 @@
+{
+  "application": {
+    "id": "aoede",
+    "name": "Aoede",
+    "platform": "discord",
+    "runtime": "rust",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/codetheweb/aoede",
+    "description": "Spotify-to-Discord audio bot.",
+    "requirements": [
+      "Needs the approved prebuilt-image or Rust/native dependency installer.",
+      "Requires Spotify Premium and Spotify credentials in addition to a Discord bot token."
+    ]
+  }
+}

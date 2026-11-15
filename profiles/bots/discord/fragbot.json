@@ -1,0 +1,14 @@
+{
+  "application": {
+    "id": "fragbot",
+    "name": "fragbot",
+    "platform": "discord",
+    "runtime": "go",
+    "status": "PREVIEW",
+    "upstreamUrl": "https://github.com/fragforce/fragbot",
+    "description": "Fragforce community Discord bot.",
+    "requirements": [
+      "Needs a Go build installer and verified application configuration handling."
+    ]
+  }
+}

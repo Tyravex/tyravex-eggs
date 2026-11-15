@@ -23,7 +23,6 @@ const eggPath = 'eggs/bots/discord-nodejs/egg.json';
 const files = [
   'registry.json',
   eggPath,
-  'eggs/bots/discord-casewise/egg.json',
   'eggs/bots/discord-python/egg.json',
   'eggs/bots/telegram-python/egg.json',
   'eggs/bots/telegram-nodejs/egg.json',
@@ -168,3 +167,20 @@ reject(
   },
   /default runtime image mismatch/
 );
+
+reject('rejects credentials in application repository URLs', egg => {
+  egg.profiles.find(profile => profile.id === 'dynamica').application.repositoryUrl = 'https://user:secret@github.com/example/bot';
+}, /invalid application profile/);
+
+reject('rejects application project traversal', egg => {
+  egg.profiles.find(profile => profile.id === 'dynamica').application.subdirectory = '../escape';
+}, /invalid application profile/);
+
+reject('rejects duplicate application variable declarations', egg => {
+  const profile = egg.profiles.find(profile => profile.id === 'dynamica');
+  profile.variables.push({ ...profile.variables[0] });
+}, /invalid or duplicate profile variable/);
+
+reject('rejects executable fields in application metadata', egg => {
+  egg.profiles.find(profile => profile.id === 'dynamica').application.command = 'sh install.sh';
+}, /unexpected property command/);
