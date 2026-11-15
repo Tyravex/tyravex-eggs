@@ -23,6 +23,7 @@ const eggPath = 'eggs/bots/discord-nodejs/egg.json';
 const files = [
   'registry.json',
   eggPath,
+  'eggs/bots/discord-casewise/egg.json',
   'eggs/bots/discord-python/egg.json',
   'eggs/bots/telegram-python/egg.json',
   'eggs/bots/telegram-nodejs/egg.json',

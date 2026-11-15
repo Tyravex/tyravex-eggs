@@ -10,8 +10,8 @@ import {
 test('loads all registered Eggs', async () => {
     const catalog = await loadCatalog();
 
-    assert.equal(catalog.length, 7);
-    assert.equal(new Set(catalog.map(egg => egg.id)).size, 7);
+    assert.equal(catalog.length, 8);
+    assert.equal(new Set(catalog.map(egg => egg.id)).size, 8);
 });
 
 test('catalog is sorted by ID', async () => {
@@ -57,7 +57,7 @@ test('filters Eggs by category', async () => {
         category: 'bots'
     });
 
-    assert.equal(bots.length, 4);
+    assert.equal(bots.length, 5);
     assert.ok(bots.every(egg => egg.category === 'bots'));
 });
 
@@ -72,7 +72,7 @@ test('filters Eggs by format version', async () => {
         formatVersion: 2
     });
 
-    assert.equal(v1.length, 6);
+    assert.equal(v1.length, 7);
     assert.equal(v2.length, 1);
 });
 

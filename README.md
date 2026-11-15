@@ -2,7 +2,7 @@
 
 Official, versioned service definitions for Tyravex Panel. Eggs describe **configuration**, not privileged executable plugins.
 
-> **Status:** Experimental format v1. No Egg is deployable until Panel and Go Agent implement and validate the runtime contract.
+> **Status:** Versioned manifests require a compatible Panel and Go Agent runtime contract. Publishing an Egg does not deploy or start a service.
 
 ## Quick start
 
@@ -19,6 +19,10 @@ npm run validate
 - [`schemas/v1/`](schemas/v1/) — versioned JSON Schema contracts
 - [`scripts/`](scripts/) — repository tooling
 - [`docs/`](docs/README.md) — architecture, format, security, contributing
+
+## Service guides
+
+- [CaseWise Discord bot](docs/eggs/casewise.md) — project selection, prerequisites and test preparation.
 
 ## Related projects
 

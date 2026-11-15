@@ -20,6 +20,7 @@ definitions for the Tyravex hosting ecosystem.
 
 ## Service definitions
 
+- [CaseWise Discord bot](eggs/casewise.md)
 - [Minecraft Java Vanilla v2](minecraft-java-vanilla-v2.md)
 
 ## Development and security

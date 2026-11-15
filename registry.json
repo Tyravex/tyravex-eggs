@@ -10,6 +10,14 @@
       "path": "eggs/bots/discord-nodejs/egg.json"
     },
     {
+      "id": "tyravex.discord.casewise",
+      "name": "CaseWise Discord Bot",
+      "description": "CaseWise Discord bot from the public ZabKoz/CaseWise project. Use ref Master and project directory bot. Requires a Discord token and an existing MongoDB database.",
+      "category": "bots",
+      "version": "1.0.0",
+      "path": "eggs/bots/discord-casewise/egg.json"
+    },
+    {
       "id": "tyravex.discord.python",
       "name": "Discord Bot - Python",
       "description": "Python runtime for a user-provided Discord bot project.",

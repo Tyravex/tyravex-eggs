@@ -31,6 +31,7 @@ const files = [
     'schemas/v1/registry.schema.json',
     'schemas/v2/egg.schema.json',
     'schemas/v2/registry.schema.json',
+    'eggs/bots/discord-casewise/egg.json',
     'eggs/bots/discord-nodejs/egg.json',
     'eggs/bots/discord-python/egg.json',
     'eggs/bots/telegram-nodejs/egg.json',
@@ -85,7 +86,7 @@ test('loads a valid isolated catalog', async () => {
     await withFixture(async root => {
         const catalog = await loadCatalog(root);
 
-        assert.equal(catalog.length, 7);
+        assert.equal(catalog.length, 8);
     });
 });
 
