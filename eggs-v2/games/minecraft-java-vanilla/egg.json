@@ -3,8 +3,8 @@
     "metadata": {
         "id": "tyravex.minecraft.java.vanilla",
         "name": "Minecraft Java - Vanilla",
-        "description": "Declarative Minecraft Java Vanilla server template using a user-provided server JAR.",
-        "version": "1.0.0",
+        "description": "Minecraft Java Vanilla template with default artwork and administrator-controlled official version availability. Execution requires Minecraft provisioning support in the panel and agent.",
+        "version": "1.1.0",
         "category": "games"
     },
     "runtime": {
@@ -41,5 +41,20 @@
             ]
         }
     },
-    "variables": []
+    "variables": [],
+    "artwork": {
+        "banner": {
+            "path": "artwork/minecraft/vanilla/banner.png",
+            "sha256": "e9276ba9757d84122b960cc14869f0fda8cf42bbfcf1d8f40ef210534076326b"
+        }
+    },
+    "provisioning": {
+        "kind": "minecraft-vanilla",
+        "versions": {
+            "channels": [
+                "release"
+            ],
+            "allowlist": []
+        }
+    }
 }

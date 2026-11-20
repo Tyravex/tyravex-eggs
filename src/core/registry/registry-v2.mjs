@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import { validateEggV2 } from '../validation/egg-v2.mjs';
 import { readSafeJson } from '../security/safe-file.mjs';
+import { parseArtwork, validateArtworkFile } from '../artwork/artwork-v1.mjs';
 
 const repositoryRoot = resolve(
     dirname(fileURLToPath(import.meta.url)),
@@ -201,6 +202,10 @@ export async function validateRegistryV2(
                 }
 
                 continue;
+            }
+
+            if (egg.artwork) {
+                for (const ref of parseArtwork(egg.artwork)) await validateArtworkFile(root, ref);
             }
 
             for (const field of [

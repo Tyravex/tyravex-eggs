@@ -96,3 +96,8 @@ deployment support is enabled.
 - Avoid exposing RCON unless explicitly configured securely.
 
 Registry inclusion is not permission to execute this Egg.
+## Version policy and artwork
+
+The Egg declares `provisioning.kind: minecraft-vanilla`. An empty `versions.allowlist` permits every official version in the selected `channels`; the default channel is `release`. Administrators may restrict the allowlist or explicitly enable snapshots and historical channels. No Minecraft version is selected automatically. Versions without an official server download or a supported Java runtime remain unavailable for installation.
+
+The default banner is stored in `artwork/minecraft/vanilla/banner.png`, moved from the panel repository without modifying the image. Registry validation checks its SHA-256. This declaration alone does not enable execution: the panel and agent must support Minecraft provisioning, explicit EULA consent, network allocation and resource enforcement.

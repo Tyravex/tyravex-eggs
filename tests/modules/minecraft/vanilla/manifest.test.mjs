@@ -75,3 +75,21 @@ test('Minecraft Vanilla is registered without v1 collision', async () => {
     assert.equal(result.valid, true, result.errors.join('\n'));
     assert.equal(result.count, 1);
 });
+
+test('Minecraft defaults to every official release without selecting a version', () => {
+    assert.deepEqual(egg.provisioning, { kind: 'minecraft-vanilla', versions: { channels: ['release'], allowlist: [] } });
+    assert.equal(Object.hasOwn(egg.provisioning, 'defaultVersion'), false);
+});
+
+test('Minecraft accepts an administrator version allowlist but rejects unknown channels', () => {
+    const limited = structuredClone(egg);
+    limited.provisioning.versions.allowlist = ['1.21.4', '26.3'];
+    assert.equal(validateEggV2(limited).valid, true);
+    limited.provisioning.versions.channels = ['custom'];
+    assert.equal(validateEggV2(limited).valid, false);
+});
+
+test('Minecraft declares the moved banner with an immutable checksum', () => {
+    assert.equal(egg.artwork.banner.path, 'artwork/minecraft/vanilla/banner.png');
+    assert.match(egg.artwork.banner.sha256, /^[a-f0-9]{64}$/);
+});

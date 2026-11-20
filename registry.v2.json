@@ -4,9 +4,9 @@
     {
       "id": "tyravex.minecraft.java.vanilla",
       "name": "Minecraft Java - Vanilla",
-      "description": "Declarative Minecraft Java Vanilla server template using a user-provided server JAR.",
+      "description": "Minecraft Java Vanilla template with default artwork and administrator-controlled official version availability. Execution requires Minecraft provisioning support in the panel and agent.",
       "category": "games",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "path": "eggs-v2/games/minecraft-java-vanilla/egg.json"
     }
   ]

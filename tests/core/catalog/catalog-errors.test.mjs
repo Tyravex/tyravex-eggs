@@ -37,7 +37,8 @@ const files = [
     'eggs/bots/telegram-python/egg.json',
     'eggs/applications/universal-nodejs/egg.json',
     'eggs/applications/universal-python/egg.json',
-    'eggs-v2/games/minecraft-java-vanilla/egg.json'
+    'eggs-v2/games/minecraft-java-vanilla/egg.json',
+    'artwork/minecraft/vanilla/banner.png'
 ];
 
 async function withFixture(run) {
