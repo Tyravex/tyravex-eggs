@@ -287,6 +287,9 @@
                 ]
               }
             }
+          },
+          "artwork": {
+            "$ref": "#/$defs/artwork"
           }
         }
       }
@@ -316,6 +319,46 @@
           "required": {
             "type": "boolean"
           }
+        }
+      }
+    },
+    "artwork": {
+      "$ref": "#/$defs/artwork"
+    }
+  },
+  "$defs": {
+    "artworkImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "maxLength": 300,
+          "pattern": "^[A-Za-z0-9_-]+(?:/[A-Za-z0-9_.-]+)*\\.(?:png|jpe?g|webp)$",
+          "not": {
+            "pattern": "(^|/)(\\.|\\.\\.)(/|$)"
+          }
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "artwork": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "banner": {
+          "$ref": "#/$defs/artworkImage"
+        },
+        "icon": {
+          "$ref": "#/$defs/artworkImage"
         }
       }
     }

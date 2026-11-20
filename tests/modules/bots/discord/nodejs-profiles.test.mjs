@@ -32,7 +32,8 @@ const files = [
   'schemas/v1/registry.schema.json',
   'scripts/validate.mjs',
   'src/core/registry/registry-v1.mjs',
-  'src/core/security/safe-file.mjs'
+  'src/core/security/safe-file.mjs',
+  'src/core/artwork/artwork-v1.mjs'
 ];
 
 async function run(change) {

@@ -1,3 +1,4 @@
+import { parseArtwork, validateArtworkFile } from '../artwork/artwork-v1.mjs';
 import { readFile, readdir, lstat } from 'node:fs/promises';
 import { readSafeJson } from '../security/safe-file.mjs';
 import { resolve, dirname } from 'node:path';
@@ -35,6 +36,7 @@ async function assertNoSymlinks(root, relativePath) {
 export async function validateRegistryV1(rootDir = repositoryRoot, options = {}) {
   const root = resolve(rootDir);
   const errors = [];
+  const artworkReferences = [];
   const readJson = async path => readSafeJson(root, path);
   const fail = (where, message) => errors.push(`${where}: ${message}`);
   const object = (obj, required, optional, where) => {
@@ -63,7 +65,7 @@ export async function validateRegistryV1(rootDir = repositoryRoot, options = {})
     } else fail(where, 'unsupported startup mode');
   };
   const validateEgg = (egg, where) => {
-    if (!object(egg, ['schemaVersion', 'id', 'name', 'description', 'version', 'category', 'runtime', 'install', 'startup', 'variables'], ['profiles', 'defaultProfile'], where)) return;
+    if (!object(egg, ['schemaVersion', 'id', 'name', 'description', 'version', 'category', 'runtime', 'install', 'startup', 'variables'], ['profiles', 'defaultProfile', 'artwork'], where)) return;
     if (egg.schemaVersion !== 1) fail(where, 'schemaVersion must be 1');
     if (!idOk(egg.id)) fail(where, 'invalid id');
     if (!str(egg.name, 3, 100)) fail(where, 'invalid name');
@@ -94,17 +96,19 @@ export async function validateRegistryV1(rootDir = repositoryRoot, options = {})
       else fail(where, 'unsupported install mode');
     }
     validateStartup(egg.startup, `${where}.startup`, family);
+    if ('artwork' in egg) { try { artworkReferences.push(...parseArtwork(egg.artwork).map(ref => ({...ref,where}))); } catch (error) { fail(where,error.message); } }
     if ('profiles' in egg || 'defaultProfile' in egg) {
       if (!Array.isArray(egg.profiles) || egg.profiles.length < 1 || egg.profiles.length > 16) fail(where, 'invalid profiles');
       else {
         const ids = new Set();
         for (const [i, profile] of egg.profiles.entries()) {
           const pw = `${where}.profiles[${i}]`;
-          if (!object(profile, ['id', 'name', 'startup'], ['runtimeVersion', 'application', 'variables', 'install'], pw)) continue;
+          if (!object(profile, ['id', 'name', 'startup'], ['runtimeVersion', 'application', 'variables', 'install', 'artwork'], pw)) continue;
           if (!profileIdOk(profile.id) || !str(profile.name, 3, 100)) fail(pw, 'invalid profile metadata');
           if (ids.has(profile.id)) fail(pw, 'duplicate profile id');
           ids.add(profile.id);
           validateStartup(profile.startup, `${pw}.startup`, family);
+          if ('artwork' in profile) { try { artworkReferences.push(...parseArtwork(profile.artwork).map(ref => ({...ref,where:pw}))); } catch (error) { fail(pw,error.message); } }
           if ('runtimeVersion' in profile && !runtimeVersions.has(profile.runtimeVersion)) fail(pw, 'profile runtime version not listed');
           if ('install' in profile && allowed(profile.install, ['mode', 'packageManager'], `${pw}.install`)) {
             if (profile.install.mode !== family || !(family === 'nodejs' ? ['npm', 'pnpm'].includes(profile.install.packageManager) : profile.install.packageManager === 'pip')) fail(pw, 'invalid profile installer');
@@ -180,6 +184,7 @@ export async function validateRegistryV1(rootDir = repositoryRoot, options = {})
       await discover('eggs');
     }
   }
+  for (const {where,...ref} of artworkReferences) { try { await validateArtworkFile(root,ref); } catch (error) { fail(where,error.message); } }
   for (const path of ['schemas/v1/egg.schema.json', 'schemas/v1/registry.schema.json']) {
     try { await readJson(path); } catch (error) { fail(path, error.message); }
   }
