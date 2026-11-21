@@ -20,7 +20,7 @@ test('registry v2 core validates the canonical repository', async () => {
     const result = await validateFromCore();
 
     assert.equal(result.valid, true, result.errors.join('\n'));
-    assert.equal(result.count, 1);
+    assert.equal(result.count, 2);
     assert.deepEqual(result.errors, []);
 });
 

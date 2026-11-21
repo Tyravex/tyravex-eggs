@@ -15,8 +15,8 @@ const catalogPromise = loadCatalog();
 test('panel lists all registered Eggs', async () => {
     const result = listPanelEggs(await catalogPromise);
 
-    assert.equal(result.items.length, 7);
-    assert.equal(result.pagination.total, 7);
+    assert.equal(result.items.length, 8);
+    assert.equal(result.pagination.total, 8);
 });
 
 test('panel searches by Egg name', async () => {
@@ -52,7 +52,7 @@ test('panel filters by format version', async () => {
         formatVersion: 2
     });
 
-    assert.equal(result.pagination.total, 1);
+    assert.equal(result.pagination.total, 2);
 });
 
 test('panel combines search and filters', async () => {
@@ -97,7 +97,7 @@ test('panel returns empty page beyond last page', async () => {
     });
 
     assert.equal(result.items.length, 0);
-    assert.equal(result.pagination.total, 7);
+    assert.equal(result.pagination.total, 8);
     assert.equal(result.pagination.hasNextPage, false);
 });
 
@@ -137,7 +137,7 @@ test('panel provides category counts', async () => {
 
     assert.equal(
         categories.reduce((sum, item) => sum + item.count, 0),
-        7
+        8
     );
 
     assert.equal(
@@ -149,9 +149,9 @@ test('panel provides category counts', async () => {
 test('panel provides dashboard statistics', async () => {
     const stats = getPanelCatalogStats(await catalogPromise);
 
-    assert.equal(stats.total, 7);
+    assert.equal(stats.total, 8);
     assert.equal(stats.byFormat.v1, 6);
-    assert.equal(stats.byFormat.v2, 1);
+    assert.equal(stats.byFormat.v2, 2);
 });
 
 test('panel rejects invalid pagination', async () => {

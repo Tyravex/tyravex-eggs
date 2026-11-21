@@ -10,8 +10,8 @@ import {
 test('loads all registered Eggs', async () => {
     const catalog = await loadCatalog();
 
-    assert.equal(catalog.length, 7);
-    assert.equal(new Set(catalog.map(egg => egg.id)).size, 7);
+    assert.equal(catalog.length, 8);
+    assert.equal(new Set(catalog.map(egg => egg.id)).size, 8);
 });
 
 test('catalog is sorted by ID', async () => {
@@ -73,7 +73,7 @@ test('filters Eggs by format version', async () => {
     });
 
     assert.equal(v1.length, 6);
-    assert.equal(v2.length, 1);
+    assert.equal(v2.length, 2);
 });
 
 test('supports combined filters', async () => {
@@ -86,7 +86,7 @@ test('supports combined filters', async () => {
 
     assert.deepEqual(
         result.map(egg => egg.id),
-        ['tyravex.minecraft.java.vanilla']
+        ['tyravex.minecraft.java.vanilla', 'tyravex.valheim.vanilla']
     );
 });
 

@@ -29,8 +29,8 @@ test('v2 provides validated registry entries through callback', async () => {
     });
 
     assert.equal(result.valid, true);
-    assert.equal(result.count, 1);
-    assert.equal(snapshot.length, 1);
+    assert.equal(result.count, 2);
+    assert.equal(snapshot.length, 2);
     assert.ok(snapshot.every(entry => typeof entry.id === 'string'));
 });
 

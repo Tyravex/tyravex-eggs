@@ -40,7 +40,9 @@ const files = [
     'eggs/applications/universal-nodejs/egg.json',
     'eggs/applications/universal-python/egg.json',
     'eggs-v2/games/minecraft-java-vanilla/egg.json',
-    'artwork/minecraft/vanilla/banner.png'
+    'artwork/minecraft/vanilla/banner.png',
+    'eggs-v2/games/valheim-vanilla/egg.json',
+    'artwork/valheim/banner.png'
 ];
 
 async function withFixture(run) {
@@ -88,7 +90,7 @@ test('loads a valid isolated catalog', async () => {
     await withFixture(async root => {
         const catalog = await loadCatalog(root);
 
-        assert.equal(catalog.length, 7);
+        assert.equal(catalog.length, 8);
     });
 });
 

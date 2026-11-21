@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 2,
+  "metadata": {
+    "id": "tyravex.valheim.vanilla",
+    "name": "Valheim - Vanilla",
+    "description": "Valheim dedicated server installed anonymously with SteamCMD. Requires the Valheim SteamCMD capability in the panel and agent, Linux amd64 containers and two consecutive UDP allocations.",
+    "version": "1.0.0",
+    "category": "games"
+  },
+  "runtime": {
+    "reference": "docker.io/steamcmd/steamcmd@sha256:a42d62fd3bf4f0a70d4d83c16dfd03a080a50ab02dab91cf2e32e6084e14a509",
+    "workingDirectory": "/app"
+  },
+  "source": {
+    "kind": "none"
+  },
+  "network": {
+    "ports": [
+      {
+        "name": "game",
+        "protocol": "udp",
+        "containerPort": 2456
+      },
+      {
+        "name": "query",
+        "protocol": "udp",
+        "containerPort": 2457
+      }
+    ]
+  },
+  "storage": {
+    "mounts": [
+      {
+        "name": "valheim-data",
+        "containerPath": "/app"
+      }
+    ]
+  },
+  "lifecycle": {
+    "start": {
+      "executable": "valheim_server.x86_64",
+      "args": [
+        "-nographics",
+        "-batchmode",
+        "-name",
+        "{{VALHEIM_NAME}}",
+        "-port",
+        "2456",
+        "-world",
+        "{{VALHEIM_WORLD}}",
+        "-password",
+        "{{VALHEIM_PASSWORD}}",
+        "-savedir",
+        "/app/project/saves",
+        "-public",
+        "0"
+      ]
+    }
+  },
+  "variables": [
+    {
+      "name": "VALHEIM_NAME",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "VALHEIM_WORLD",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "VALHEIM_PASSWORD",
+      "type": "secret",
+      "required": true
+    }
+  ],
+  "artwork": {
+    "banner": {
+      "path": "artwork/valheim/banner.png",
+      "sha256": "7116c3aabe13b484faf4460b38b06eba6aea60322a4dc86e30181ab6fb0c0a46"
+    }
+  },
+  "provisioning": {
+    "kind": "steamcmd",
+    "game": "valheim",
+    "appId": 896660,
+    "login": "anonymous",
+    "branch": "public",
+    "platform": "linux",
+    "architecture": "amd64",
+    "stopSignal": "SIGINT",
+    "stopTimeoutSeconds": 120
+  }
+}

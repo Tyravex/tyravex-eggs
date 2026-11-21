@@ -73,7 +73,7 @@ test('Minecraft Vanilla is registered without v1 collision', async () => {
     const result = await validateRegistryV2();
 
     assert.equal(result.valid, true, result.errors.join('\n'));
-    assert.equal(result.count, 1);
+    assert.equal(result.count, 2);
 });
 
 test('Minecraft defaults to every official release without selecting a version', () => {

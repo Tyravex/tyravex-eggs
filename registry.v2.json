@@ -8,6 +8,14 @@
       "category": "games",
       "version": "1.1.0",
       "path": "eggs-v2/games/minecraft-java-vanilla/egg.json"
+    },
+    {
+      "id": "tyravex.valheim.vanilla",
+      "name": "Valheim - Vanilla",
+      "description": "Valheim dedicated server installed anonymously with SteamCMD. Requires the Valheim SteamCMD capability in the panel and agent, Linux amd64 containers and two consecutive UDP allocations.",
+      "version": "1.0.0",
+      "category": "games",
+      "path": "eggs-v2/games/valheim-vanilla/egg.json"
     }
   ]
 }
