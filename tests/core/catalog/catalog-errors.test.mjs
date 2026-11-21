@@ -33,6 +33,8 @@ const files = [
     'schemas/v2/registry.schema.json',
     'eggs/bots/discord-nodejs/egg.json',
     'eggs/bots/discord-python/egg.json',
+    'artwork/bots/discord/banner.png',
+    'artwork/bots/telegram/banner.png',
     'eggs/bots/telegram-nodejs/egg.json',
     'eggs/bots/telegram-python/egg.json',
     'eggs/applications/universal-nodejs/egg.json',

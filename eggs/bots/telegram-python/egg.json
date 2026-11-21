@@ -3,7 +3,7 @@
   "id": "tyravex.telegram.python",
   "name": "Telegram Bot - Python",
   "description": "Python runtime for a user-provided Telegram bot project.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "category": "bots",
   "runtime": {
     "type": "docker",
@@ -69,5 +69,11 @@
       "type": "secret",
       "required": true
     }
-  ]
+  ],
+  "artwork": {
+    "banner": {
+      "path": "artwork/bots/telegram/banner.png",
+      "sha256": "f4c5f1d94b2f3e27a6285036c76c9b0b1d72a2f3eb3a337b6a4cc9848a5aae65"
+    }
+  }
 }

@@ -6,7 +6,7 @@
       "name": "Discord Bot - Node.js",
       "description": "Node.js runtime for a user-provided Discord bot project.",
       "category": "bots",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "path": "eggs/bots/discord-nodejs/egg.json"
     },
     {
@@ -14,7 +14,7 @@
       "name": "Discord Bot - Python",
       "description": "Python runtime for a user-provided Discord bot project.",
       "category": "bots",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "path": "eggs/bots/discord-python/egg.json"
     },
     {
@@ -22,7 +22,7 @@
       "name": "Telegram Bot - Python",
       "description": "Python runtime for a user-provided Telegram bot project.",
       "category": "bots",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "path": "eggs/bots/telegram-python/egg.json"
     },
     {
@@ -30,7 +30,7 @@
       "name": "Telegram Bot - Node.js",
       "description": "Node.js runtime for a user-provided Telegram bot project.",
       "category": "bots",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "path": "eggs/bots/telegram-nodejs/egg.json"
     },
     {

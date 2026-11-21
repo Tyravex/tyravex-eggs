@@ -3,7 +3,7 @@
   "id": "tyravex.discord.nodejs",
   "name": "Discord Bot - Node.js",
   "description": "Node.js runtime for a user-provided Discord bot project.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "category": "bots",
   "runtime": {
     "type": "docker",
@@ -135,5 +135,11 @@
       "type": "secret",
       "required": true
     }
-  ]
+  ],
+  "artwork": {
+    "banner": {
+      "path": "artwork/bots/discord/banner.png",
+      "sha256": "72552a782edee4f832dc55495dff6b1f964bb6314652734c00f793392aca092a"
+    }
+  }
 }
